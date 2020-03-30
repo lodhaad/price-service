@@ -36,8 +36,19 @@ public class PriceController {
 	private SecurityPriceService service;
 	
 	
-	@GetMapping (path="/{stockId}/date/{dateOfPrice}" , consumes = MediaType.APPLICATION_JSON_VALUE , 
-			produces =  MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping (path="/health" )
+	
+	public String health() {
+		
+		return "Good health";
+		
+	}
+	
+	
+	@GetMapping (path="/{stockId}/date/{dateOfPrice}" )
+			
+
+
 	
 	public ResponseEntity<SecurityPriceResponse> getPrice(@PathVariable("stockId") String stockId, 
 			@PathVariable("dateOfPrice") String dateOfPrice) throws ParseException {
@@ -73,8 +84,7 @@ public class PriceController {
 	}
 	
 	
-	@GetMapping (path="/{stockId}" , consumes = MediaType.APPLICATION_JSON_VALUE , 
-			produces =  MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping (path="/{stockId}" )
 	
 	public ResponseEntity<List<SecurityPriceResponse>> getAllPriceForSecurity(@PathVariable("stockId") String stockId){
 		
@@ -105,8 +115,8 @@ public class PriceController {
 	}
 	
 	
-	@PostMapping ( consumes = MediaType.APPLICATION_JSON_VALUE , 
-			produces =  MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping 
+
 	
 	public ResponseEntity<SecurityPriceResponse> savePriceForSecurityForDate(
 			@RequestBody SecurityPriceRequest request){
@@ -125,8 +135,7 @@ public class PriceController {
 	}
 	
 	
-	@PostMapping ( path="/bulk", consumes = MediaType.APPLICATION_JSON_VALUE , 
-			produces =  MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping ( path="/bulk")
 	
 	public ResponseEntity<List<SecurityPriceResponse>> savePriceForSecuritiesForAGivenDate(@RequestBody
 			List<SecurityPriceRequest> listOfSecurities){
